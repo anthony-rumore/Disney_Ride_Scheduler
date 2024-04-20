@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#pragma once
 #include "theHeap.h"
 using namespace std;
 
@@ -44,17 +45,19 @@ class RideDatabase {
     double loadFactor = 0.75;
 
     vector<map<int, pair<int, int>>> TimeCount; // vector of RideName, map with key is the interval, value is the total waiting time and count
-    map<string, minHeap> AvgMap;
 
     // Hash function
-    int hash() {}
+    //int hash() {}
 
     // Rehash function to increase database size
     void rehash() {}
 
 public:
     vector<DatabaseEntry> rideDatabase;
-    RideDatabase() {}
+    map<string, minHeap> AvgMap;
+    RideDatabase() {
+        TimeCount.resize(6);
+    }
 
     // Returns true if rideDatabase contains an entry with key = rideName
     bool contains(string& rideName) {
@@ -102,7 +105,7 @@ public:
         }
     }
 
-    map<string, minHeap> AvgTimeofRide() {
+    void AvgTimeofRide() {
         for(int i = 0; i < rideDatabase.size(); i++) {
             minHeap theheap;
             for (auto intervaltime = TimeCount[i].begin(); intervaltime != TimeCount[i].end(); intervaltime++) {
@@ -110,6 +113,5 @@ public:
             }
             AvgMap[rideDatabase[i].rideName] = theheap;
         }
-        return AvgMap;
     }
 };

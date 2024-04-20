@@ -31,12 +31,9 @@ void populateRideData() {
 }
 
 int main() {
-    string time;
-    cin >> time;
-    Scheduler scheduler = Scheduler();
-    cout << scheduler.convertTimeToString(stoi(time));
 
-    /*
+    RideDatabase db;
+
     cout << "Initializing data..." << endl;
     populateRideData();
 
@@ -96,12 +93,14 @@ int main() {
 
     }
 
-    cout << "{";
-    for (int id : rideIDs) {
-        cout << id <<", ";
-    }
-    cout << "}";
-    */
+   // Loop through rideIds to fill RideDatabase with user's choices
+   for (int i = 0; i < 6; i++) {
+       processData(db, rideIDs[i]);
+   }
+
+   db.getTotalTime();
+
+   db.AvgTimeofRide(); // Fills Avg Map
 
     return 0;
 
