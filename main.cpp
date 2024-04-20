@@ -3,6 +3,7 @@
 #include <string>
 #include <algorithm>
 #include "AverageTime.h"
+#include "processData.h"
 
 using namespace std;
 
