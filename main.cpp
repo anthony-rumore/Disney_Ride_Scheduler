@@ -56,7 +56,7 @@ int main() {
         bool inputInvalid = true;
         while (inputInvalid) {
             cout << endl;
-            cout << "Enter your " << promptOrder[i] << " ride: ";
+            cout << "Enter your " << promptOrder[i] << " ride selection: ";
             cin >> input;
 
             inputInvalid = false;
