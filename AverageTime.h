@@ -7,12 +7,11 @@
 using namespace std;
 
 class AverageTime {
-    RideDatabase db;
     vector<map<int, pair<int, int>>> TimeCount; // vector of RideName, map with key is the interval, value is the total waiting time and count
     map<string, minHeap> AvgMap;
 
 public:
-    void getTotalTime() {
+    void getTotalTime(RideDatabase& db) {
         for(int i = 0; i < db.rideDatabase.size(); i++) { // each RideName
             for(auto RideData: db.rideDatabase[i].rideData) {
                 if(TimeCount[i].find(RideData.timeOfDay/5) == TimeCount[i].end()) {
@@ -26,7 +25,7 @@ public:
         }
     }
 
-    map<string, vector<pair<int, float>>> AvgTimeofRide() {
+    map<string, minHeap> AvgTimeofRide(RideDatabase& db) {
         for(int i = 0; i < db.rideDatabase.size(); i++) {
             minHeap theheap;
             for (auto intervaltime = TimeCount[i].begin(); intervaltime != TimeCount[i].end(); intervaltime++) {
@@ -34,7 +33,8 @@ public:
             }
             AvgMap[db.rideDatabase[i].rideName] = theheap;
         }
-    };
+        return AvgMap;
+    }
 
 };
 
