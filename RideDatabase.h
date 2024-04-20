@@ -43,7 +43,9 @@ class RideDatabase {
     int databaseSize = 8;
     double loadFactor = 0.75;
 
-    vector<map<int, pair<int, int>>> TimeCount; // vector of RideName, map with key is the interval, value is the total waiting time and count
+    vector<DatabaseEntry> rideDatabase;
+
+    vector<map<int, pair<int, int>>> TimeCount;// vector of RideName, map with key is the interval, value is the total waiting time and count
     map<string, minHeap> AvgMap;
 
     // Hash function
@@ -53,8 +55,9 @@ class RideDatabase {
     void rehash() {}
 
 public:
-    vector<DatabaseEntry> rideDatabase;
-    RideDatabase() {}
+    RideDatabase() {
+        vector<map<int, pair<int, int>>> TimeCount(6);
+    }
 
     // Returns true if rideDatabase contains an entry with key = rideName
     bool contains(string& rideName) {
@@ -88,6 +91,7 @@ public:
         }
     }
 
+    // Get the total time of waiting in each interval
     void getTotalTime() {
         for(int i = 0; i < rideDatabase.size(); i++) { // each RideName
             for(auto RideData: rideDatabase[i].rideData) {
@@ -101,7 +105,7 @@ public:
             }
         }
     }
-
+    // Return a map with Ride name and value is minHeap
     map<string, minHeap> AvgTimeofRide() {
         for(int i = 0; i < rideDatabase.size(); i++) {
             minHeap theheap;
