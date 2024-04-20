@@ -123,7 +123,7 @@ vector<string> Scheduler::scheduleDay() {
             }
 
             // Add ride to schedule text for the output
-            outputText.push_back(convertTimeToString(startTime) + " - " + ride);
+            outputText.push_back(convertTimeToString(startTime) + " - " + ride); // TO-DO Wait time ETA? (~30 min wait)
             scheduling = false;
         }
 
