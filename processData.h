@@ -36,7 +36,7 @@ int convertTime(string inputTime) {
 }
 
 // Reads one data file and enters each row of data into RideDatabase
-void readFile(RideDatabase& rides, string& fileName) {
+void readFile(RideDatabase& rides, string fileName) {
     ifstream file(fileName);
     string data;
     int convertedTime;
@@ -73,84 +73,84 @@ void readFile(RideDatabase& rides, string& fileName) {
 void processData(RideDatabase& rides, int rideChoice) {
     switch(rideChoice) {
         case 1:  // AO
-            readFile(rides, (string &) "../Data/Feb-AO.csv");
-            readFile(rides, (string &) "../Data/Jan-AO.csv");
+            readFile(rides, "../Data/Feb-AO.csv");
+            readFile(rides, "../Data/Jan-AO.csv");
             break;
         case 2:  // BS
-            readFile(rides, (string &) "../Data/Feb-BS.csv");
-            readFile(rides, (string &) "../Data/Jan-BS.csv");
+            readFile(rides, "../Data/Feb-BS.csv");
+            readFile(rides, "../Data/Jan-BS.csv");
             break;
         case 3:  // BTM
-            readFile(rides, (string &) "../Data/Feb-BTM.csv");
-            readFile(rides, (string &) "../Data/Jan-BTM.csv");
+            readFile(rides, "../Data/Feb-BTM.csv");
+            readFile(rides, "../Data/Jan-BTM.csv");
             break;
         case 4:  // DFE
-            readFile(rides, (string &) "../Data/Feb-DFE.csv");
-            readFile(rides, (string &) "../Data/Jan-DFE.csv");
+            readFile(rides, "../Data/Feb-DFE.csv");
+            readFile(rides, "../Data/Jan-DFE.csv");
             break;
         case 5:  // ETB
-            readFile(rides, (string &) "../Data/Feb-ETB.csv");
-            readFile(rides, (string &) "../Data/Jan-ETB.csv");
+            readFile(rides, "../Data/Feb-ETB.csv");
+            readFile(rides, "../Data/Jan-ETB.csv");
             break;
         case 6:  // HM
-            readFile(rides, (string &) "../Data/Feb-HM.csv");
-            readFile(rides, (string &) "../Data/Jan-HM.csv");
+            readFile(rides, "../Data/Feb-HM.csv");
+            readFile(rides, "../Data/Jan-HM.csv");
             break;
         case 7:  // ISM
-            readFile(rides, (string &) "../Data/Feb-ISM.csv");
-            readFile(rides, (string &) "../Data/Jan-ISM.csv");
+            readFile(rides, "../Data/Feb-ISM.csv");
+            readFile(rides, "../Data/Jan-ISM.csv");
             break;
         case 8:  // JC
-            readFile(rides, (string &) "../Data/Feb-JC.csv");
-            readFile(rides, (string &) "../Data/Jan-JC.csv");
+            readFile(rides, "../Data/Feb-JC.csv");
+            readFile(rides, "../Data/Jan-JC.csv");
             break;
         case 9:  // LM
-            readFile(rides, (string &) "../Data/Feb-LM.csv");
-            readFile(rides, (string &) "../Data/Jan-LM.csv");
+            readFile(rides, "../Data/Feb-LM.csv");
+            readFile(rides, "../Data/Jan-LM.csv");
             break;
         case 10:  // MCA
-            readFile(rides, (string &) "../Data/Feb-MCA.csv");
-            readFile(rides, (string &) "../Data/Jan-MCA.csv");
+            readFile(rides, "../Data/Feb-MCA.csv");
+            readFile(rides, "../Data/Jan-MCA.csv");
             break;
         case 11:  // MT
-            readFile(rides, (string &) "../Data/Feb-MT.csv");
-            readFile(rides, (string &) "../Data/Jan-MT.csv");
+            readFile(rides, "../Data/Feb-MT.csv");
+            readFile(rides, "../Data/Jan-MT.csv");
             break;
         case 12:  // MTP
-            readFile(rides, (string &) "../Data/Feb-MTP.csv");
-            readFile(rides, (string &) "../Data/Jan-MTP.csv");
+            readFile(rides, "../Data/Feb-MTP.csv");
+            readFile(rides, "../Data/Jan-MTP.csv");
             break;
         case 13:  // PCC
-            readFile(rides, (string &) "../Data/Feb-PCC.csv");
-            readFile(rides, (string &) "../Data/Jan-PCC.csv");
+            readFile(rides, "../Data/Feb-PCC.csv");
+            readFile(rides, "../Data/Jan-PCC.csv");
             break;
         case 14:  // PM
-            readFile(rides, (string &) "../Data/Feb-PM.csv");
-            readFile(rides, (string &) "../Data/Jan-PM.csv");
+            readFile(rides, "../Data/Feb-PM.csv");
+            readFile(rides, "../Data/Jan-PM.csv");
             break;
         case 15:  // POC
-            readFile(rides, (string &) "../Data/Feb-POC.csv");
-            readFile(rides, (string &) "../Data/Jan-POC.csv");
+            readFile(rides, "../Data/Feb-POC.csv");
+            readFile(rides, "../Data/Jan-POC.csv");
             break;
         case 16:  // PPF
-            readFile(rides, (string &) "../Data/Feb-PPF.csv");
-            readFile(rides, (string &) "../Data/Jan-PPF.csv");
+            readFile(rides, "../Data/Feb-PPF.csv");
+            readFile(rides, "../Data/Jan-PPF.csv");
             break;
         case 17:  // SM
-            readFile(rides, (string &) "../Data/Feb-SM.csv");
-            readFile(rides, (string &) "../Data/Jan-SM.csv");
+            readFile(rides, "../Data/Feb-SM.csv");
+            readFile(rides, "../Data/Jan-SM.csv");
             break;
         case 18:  // SRS
-            readFile(rides, (string &) "../Data/Feb-SRS.csv");
-            readFile(rides, (string &) "../Data/Jan-SRS.csv");
+            readFile(rides, "../Data/Feb-SRS.csv");
+            readFile(rides, "../Data/Jan-SRS.csv");
             break;
         case 19:  // TSW
-            readFile(rides, (string &) "../Data/Feb-TSW.csv");
-            readFile(rides, (string &) "../Data/Jan-TSW.csv");
+            readFile(rides, "../Data/Feb-TSW.csv");
+            readFile(rides, "../Data/Jan-TSW.csv");
             break;
         case 20:  // WTP
-            readFile(rides, (string &) "../Data/Feb-WTP.csv");
-            readFile(rides, (string &) "../Data/Jan-WTP.csv");
+            readFile(rides, "../Data/Feb-WTP.csv");
+            readFile(rides, "../Data/Jan-WTP.csv");
             break;
     }
 }
