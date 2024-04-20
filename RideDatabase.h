@@ -9,11 +9,11 @@ struct RideData {
     int waitTime;
 
     RideData() {
-        this->timeOfDay = "";
+        this->timeOfDay = 0;
         this->waitTime = 0;
     }
 
-    RideData(string& timeOfDay, int& waitTime) {
+    RideData(int& timeOfDay, int& waitTime) {
         this->timeOfDay = timeOfDay;
         this->waitTime = waitTime;
     }
@@ -29,7 +29,7 @@ struct DatabaseEntry {
         this->rideData = vector<RideData>(1);
     }
 
-    DatabaseEntry(string& rideName, string& timeOfDay, int& waitTime) {
+    DatabaseEntry(string& rideName, int& timeOfDay, int& waitTime) {
         this->rideName = rideName;
         this->rideData = {RideData(timeOfDay, waitTime)};
     }
@@ -45,7 +45,7 @@ class RideDatabase {
     int hash() {}
 
     // Rehash function to increase database size
-    void rehashDatabase() {}
+    void rehash() {}
 
 public:
     vector<DatabaseEntry> rideDatabase;
@@ -82,7 +82,4 @@ public:
             rideDatabase[index].rideData.push_back(entry.rideData[0]);
         }
     }
-
-    // Returns a vector of TimeData objects that fall within startTime and endTime
-    vector<int> getTimeData(string& rideName, string& startTime, string& endTime) {}
 };
