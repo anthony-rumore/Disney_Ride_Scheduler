@@ -43,6 +43,93 @@ string Scheduler::convertTimeToString(int time) {
     return output.str();
 }
 
+void Scheduler::populateData() {
+
+    // Get all the data for:
+    // - SelectedRides
+    // - ridePopularityIndexes
+    // - lowestRideWaits
+}
+
 vector<string> Scheduler::scheduleDay() {
-    return vector<string>();
+    queue<string> scheduleQueue;
+    vector<string> outputText;
+
+    unordered_set<string> ridesToQueue = selectedRides; // copy rides
+
+    // Queue all the rides in order of popularity
+    while (!ridesToQueue.empty()) {
+        int largestRPI = -1;
+        string selectedRide;
+
+        // Select ride w/ the largest popularity index
+        for (string ride : ridesToQueue) {
+            int rpi = ridePopularityIndexes[ride];
+            if (rpi > largestRPI) {
+                largestRPI = rpi;
+                selectedRide = ride;
+            }
+        }
+
+        scheduleQueue.emplace(selectedRide);
+        ridesToQueue.erase(selectedRide);
+    }
+
+    // Schedule the rides
+    while (!scheduleQueue.empty()) {
+        string ride = scheduleQueue.front();
+        minHeap &lowestWaits = lowestRideWaits[ride];
+
+        bool scheduling = true;
+        while (scheduling) {
+            // Get time variables
+            int startTime = lowestWaits.getMin().first;
+            int lowestWait = (int) round(lowestWaits.getMin().second);
+            int endTime = startTime + lowestWait + SCHEDULE_BUFFER;
+
+            bool overlap = false;
+
+            // Checks to see if the day is clear at those times
+            for (int i = startTime; i < endTime; i += 5) {
+                pair<int, int> arrayTime = convertTimeToPair(i);
+                bool timeAvailable = !day[arrayTime.first][arrayTime.second];
+
+                if (!timeAvailable) {
+                    overlap = true;
+                    break;
+                }
+            }
+
+            // Resolve time conflict
+            if (overlap) {
+                // Removes the min wait time because that time doesn't work
+                lowestWaits.extractMin();
+
+                // Check to make sure it's not empty
+                if (lowestWaits.theheap.empty()) {
+                    outputText.push_back("COULD NOT SCHEDULE: " + ride);
+                    scheduleQueue.pop();
+                }
+
+                // Re-run the loop to find next best time in queue
+                // or next ride if no more in wait queue
+                continue;
+            }
+
+            // Blocks off the times
+            for (int i = startTime; i < endTime; i += 5) {
+                pair<int, int> arrayTime = convertTimeToPair(i);
+                day[arrayTime.first][arrayTime.second] = true;
+            }
+
+            // Add ride to schedule text for the output
+            outputText.push_back(convertTimeToString(startTime) + " - " + ride);
+            scheduling = false;
+        }
+
+        // Move on to the next ride to schedule
+        scheduleQueue.pop();
+    }
+
+    return outputText;
 }
