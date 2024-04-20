@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <unordered_set>
 #pragma once
 #include "theHeap.h"
 using namespace std;
@@ -55,6 +56,7 @@ class RideDatabase {
 public:
     vector<DatabaseEntry> rideDatabase;
     map<string, minHeap> AvgMap;
+    unordered_set<string> rideNames;
     RideDatabase() {
         TimeCount.resize(6);
     }
@@ -114,4 +116,17 @@ public:
             AvgMap[rideDatabase[i].rideName] = theheap;
         }
     }
+
+    int getPopularityIndex(string& rideName) {
+        // Traverse each Entry in database
+        // Add up all of the waitTimes and divide by the total number of
+        return 0;
+    }
+
+    void fillRideNames() {
+        for (DatabaseEntry entry : rideDatabase) {
+            rideNames.emplace(entry.rideName);
+        }
+    }
+
 };
