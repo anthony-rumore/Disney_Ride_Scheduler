@@ -1,3 +1,4 @@
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include "RideDatabase.h"
@@ -21,18 +22,21 @@ bool validateTime(string inputTime) {
 
 // Converts inputTime from "09:01:00" format to an int representation in minutes
 int convertTime(string inputTime) {
-    // Input time format: "09:00:27"
-    // Output: 540
-    // Input time format: "09:04:00"
-    // Output: 544
-    stringstream stream(inputTime) {
+    stringstream stream(inputTime);
+    string data;
+    int minutes = 0;
 
-    }
+    getline(stream, data, ':');
+    minutes += (stoi(data) * 60);
+    getline(stream, data, ':');
+    minutes += stoi(data);
+
+    return minutes;
+
 }
 
 // Reads one data file and enters each row of data into RideDatabase
 void readFile(RideDatabase& rides, string& fileName) {
-
     ifstream file(fileName);
     string data;
     int convertedTime;
@@ -51,7 +55,8 @@ void readFile(RideDatabase& rides, string& fileName) {
         getline(file, data, ' ');
         getline(file, data, ',');
         // If the timeOfDay is not between 9:00AM-9:00PM, do not add to database
-        if (validateTime(rideData.timeOfDay)) {
+        if (!validateTime(data)) {
+            getline(file, data, '\n');
             continue;
         }
         // If the time is valid, convert it to an int in minutes
@@ -61,12 +66,10 @@ void readFile(RideDatabase& rides, string& fileName) {
         rideData.waitTime = stoi(data);
         entry.rideData[0] = rideData;
         rides.insert(entry);
-
     }
 }
 
-// Input: 6 ints to represent user's ride choices
-// Only process data files that correspond to the user's choices
+// Based on user's rideChoice, inserts the data from that file into RideDatabase
 void processData(RideDatabase& rides, int rideChoice) {
     switch(rideChoice) {
         case 1:  // AO

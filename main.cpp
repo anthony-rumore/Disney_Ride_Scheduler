@@ -3,6 +3,8 @@
 #include <string>
 #include <algorithm>
 
+#include "processData.h"
+
 using namespace std;
 
 vector<string> rideNames; // basic placeholder to help print the rides for the UI
@@ -28,6 +30,7 @@ void populateRideData() {
 }
 
 int main() {
+
     cout << "Initializing data..." << endl;
     populateRideData();
 
@@ -43,5 +46,7 @@ int main() {
     for (int i = 0; i < rideNames.size(); i++) {
         cout << i + 1 << ". " << rideNames[i] << endl;
     }
+
+
     return 0;
 }
