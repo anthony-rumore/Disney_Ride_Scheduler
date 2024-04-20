@@ -2,8 +2,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-
-#include "processData.h"
+#include "AverageTime.h"
 
 using namespace std;
 
@@ -22,7 +21,7 @@ void populateRideData() {
     rideNames.push_back("Tomorrowland Speedway");
     rideNames.push_back("Tea Cups");
     rideNames.push_back("PeopleMover");
-    rideNames.push_back("Mine Train");
+    rideNames.push_back("Seven Dwarfs Mine Train");
 
     sort(rideNames.begin(), rideNames.end());
     // etc.
@@ -30,7 +29,7 @@ void populateRideData() {
 }
 
 int main() {
-
+    /*
     cout << "Initializing data..." << endl;
     populateRideData();
 
@@ -47,6 +46,56 @@ int main() {
         cout << i + 1 << ". " << rideNames[i] << endl;
     }
 
+    const int NUM_RIDES = 6;
+
+    string promptOrder[NUM_RIDES] = {"first", "second", "third", "fourth", "fifth", "sixth"};
+    int rideIDs[NUM_RIDES];
+
+    for (int i = 0; i < NUM_RIDES; i++) {
+        string input;
+        bool inputInvalid = true;
+        while (inputInvalid) {
+            cout << endl;
+            cout << "Enter your " << promptOrder[i] << " ride selection: ";
+            cin >> input;
+
+            inputInvalid = false;
+
+            try {
+                rideIDs[i] = stoi(input);
+            }
+            catch (const std::invalid_argument& e) {
+                // Not an integer!
+                cout << "! !  That is not a valid number  ! !" << endl;
+                inputInvalid = true;
+                continue;
+            }
+
+            if (rideIDs[i] > 20 || rideIDs[i] < 1) {  // Out of bounds!
+                cout << "! !  Please select a ride from the list given above  ! !" << endl;
+                inputInvalid = true;
+                continue;
+            }
+
+            for (int j = 0; j < i; j++) {
+                if (rideIDs[j] == rideIDs[i]) {
+                    // Duplicate ride detected!
+                    cout << "! !  You've already selected that ride  ! !" << endl;
+                    inputInvalid = true;
+                    break;
+                }
+            }
+        }
+
+    }
+
+    cout << "{";
+    for (int id : rideIDs) {
+        cout << id <<", ";
+    }
+    cout << "}";
+    */
 
     return 0;
+
 }
