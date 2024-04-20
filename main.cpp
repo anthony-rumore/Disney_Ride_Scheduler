@@ -97,9 +97,12 @@ int main() {
        processData(db, rideIDs[i]);
    }
 
+   db.fillRideNames();
+
    db.getTotalTime();
 
    db.AvgTimeofRide(); // Fills Avg Map
+
 
     return 0;
 
