@@ -5,7 +5,7 @@ using namespace std;
 
 // Struct to hold each row of a ride's data (timeOfDay, waitTime)
 struct RideData {
-    string timeOfDay;
+    int timeOfDay;
     int waitTime;
 
     RideData() {
@@ -37,7 +37,7 @@ struct DatabaseEntry {
 
 // Hash table will be implemented as a vector of DatabaseEntry structs
 class RideDatabase {
-    vector<DatabaseEntry> rideDatabase;
+
     int databaseSize = 8;
     double loadFactor = 0.75;
 
@@ -48,7 +48,7 @@ class RideDatabase {
     void rehashDatabase() {}
 
 public:
-
+    vector<DatabaseEntry> rideDatabase;
     RideDatabase() {}
 
     // Returns true if rideDatabase contains an entry with key = rideName

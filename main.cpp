@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include "AverageTime.h"
 
 using namespace std;
 
@@ -28,6 +29,7 @@ void populateRideData() {
 }
 
 int main() {
+    /*
     cout << "Initializing data..." << endl;
     populateRideData();
 
@@ -92,5 +94,8 @@ int main() {
         cout << id <<", ";
     }
     cout << "}";
+    */
+
     return 0;
+
 }
