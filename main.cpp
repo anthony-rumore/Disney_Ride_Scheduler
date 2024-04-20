@@ -2,7 +2,8 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include "AverageTime.h"
+// #include "AverageTime.h"
+#include "Scheduler.h"
 
 using namespace std;
 
@@ -29,6 +30,11 @@ void populateRideData() {
 }
 
 int main() {
+    string time;
+    cin >> time;
+    Scheduler scheduler = Scheduler();
+    cout << scheduler.convertTimeToString(stoi(time));
+
     /*
     cout << "Initializing data..." << endl;
     populateRideData();
