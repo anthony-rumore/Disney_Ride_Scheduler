@@ -38,42 +38,43 @@ int main() {
     string promptOrder[NUM_RIDES] = {"first", "second", "third", "fourth", "fifth", "sixth"};
     int rideIDs[NUM_RIDES];
 
-    for (int i = 0; i < NUM_RIDES; i++) {
+    int inputCount = 0; // This will track how many valid, unique inputs have been entered.
+
+    while (inputCount < NUM_RIDES) {
         string input;
-        bool inputInvalid = true;
-        while (inputInvalid) {
-            cout << endl;
-            cout << "Enter your " << promptOrder[i] << " ride selection: ";
-            cin >> input;
+        cout << endl;
+        cout << "Enter your " << promptOrder[inputCount] << " ride selection: ";
+        cin >> input;
 
-            inputInvalid = false;
+        int input_num = 0;
+        try {
+            input_num = stoi(input);
+        }
+        catch (const std::invalid_argument& e) {
+            // Not an integer!
+            cout << "! !  That is not a valid number  ! !" << endl;
+            continue; // Skip to the next iteration of the loop.
+        }
 
-            try {
-                rideIDs[i] = stoi(input);
-            }
-            catch (const std::invalid_argument& e) {
-                // Not an integer!
-                cout << "! !  That is not a valid number  ! !" << endl;
-                inputInvalid = true;
-                continue;
-            }
+        if (input_num > 20 || input_num < 1) { // Out of bounds!
+            cout << "! !  Please select a ride from the list given above  ! !" << endl;
+            continue; // Skip to the next iteration of the loop.
+        }
 
-            if (rideIDs[i] > 20 || rideIDs[i] < 1) {  // Out of bounds!
-                cout << "! !  Please select a ride from the list given above  ! !" << endl;
-                inputInvalid = true;
-                continue;
-            }
-
-            for (int j = 0; j < i; j++) {
-                if (rideIDs[j] == rideIDs[i]) {
-                    // Duplicate ride detected!
-                    cout << "! !  You've already selected that ride  ! !" << endl;
-                    inputInvalid = true;
-                    break;
-                }
+        // Check for duplicates.
+        bool isDuplicate = false;
+        for (int j = 0; j < inputCount; j++) {
+            if (rideIDs[j] == input_num) {
+                // Duplicate ride detected!
+                cout << "! !  You've already selected that ride  ! !" << endl;
+                isDuplicate = true;
+                break;
             }
         }
 
+        if (!isDuplicate) {
+            rideIDs[inputCount++] = input_num; // Store the valid input and increment the count.
+        }
     }
 
    // Loop through rideIds to fill RideDatabase with user's choices
