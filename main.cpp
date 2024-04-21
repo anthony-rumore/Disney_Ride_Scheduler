@@ -45,9 +45,12 @@ int main() {
          << "Our program will then generate a personalized schedule tailored to optimize your visit, " << endl
          << "helping you avoid long queues and will maximize your day." << endl << endl;
 
+
     for (int i = 0; i < rideNames.size(); i++) {
         cout << i + 1 << ". " << rideNames[i] << endl;
     }
+
+
 
     const int NUM_RIDES = 6;
 
@@ -96,6 +99,7 @@ int main() {
    for (int i = 0; i < 6; i++) {
        processData(db, rideIDs[i]);
    }
+
 
    db.fillRideNames();
 

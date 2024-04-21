@@ -96,12 +96,12 @@ public:
     void getTotalTime() {
         for(int i = 0; i < rideDatabase.size(); i++) { // each RideName
             for(auto RideData: rideDatabase[i].rideData) {
-                if(TimeCount[i].find(RideData.timeOfDay/5) == TimeCount[i].end()) {
-                    TimeCount[i][RideData.timeOfDay/5] = make_pair(RideData.waitTime, 1);
+                if(TimeCount[i].find((RideData.timeOfDay/5) * 5) == TimeCount[i].end()) {
+                    TimeCount[i][(RideData.timeOfDay/5)*5] = make_pair(RideData.waitTime, 1);
                 }
                 else {
-                    TimeCount[i][RideData.timeOfDay/5].first += RideData.waitTime;
-                    TimeCount[i][RideData.timeOfDay/5].second++;
+                    TimeCount[i][(RideData.timeOfDay/5)*5].first += RideData.waitTime;
+                    TimeCount[i][(RideData.timeOfDay/5)*5].second++;
                 }
             }
         }
