@@ -92,8 +92,14 @@ vector<string> Scheduler::scheduleDay() {
         while (scheduling) {
             // Get time variables
             int startTime = lowestWaits.getMin().first;
+
             int lowestWait = (int) round(lowestWaits.getMin().second);
+            if (lowestWait % 5 != 0) // Round to nearest 5 mins
+                lowestWait += 5 - (lowestWait % 5);
+
             int endTime = startTime + lowestWait + SCHEDULE_BUFFER;
+            if (endTime > 1260)
+                endTime = 1260;
 
             bool overlap = false;
 
@@ -131,7 +137,7 @@ vector<string> Scheduler::scheduleDay() {
             }
 
             // Add ride to schedule text for the output
-            outputText.push_back(convertTimeToString(startTime) + " - " + ride); // TO-DO Wait time ETA? (~30 min wait)
+            outputText.push_back(convertTimeToString(startTime) + " - " + ride + " - ~" + to_string(lowestWait) + " minute wait");
             scheduling = false;
         }
 
