@@ -5,8 +5,10 @@
 #include "Scheduler.h"
 
 pair<int, int> Scheduler::convertTimeToPair(int time) {
-    if (time < 540 || time > 1260) // Invalid time
+    if (time < 540 || time > 1260) {// Invalid time
+        cout << "[Scheduler Error] ! !  INVALID TIME DETECTED  ! !" << endl;
         return {-1, -1};
+        }
 
     int hour, minuteInterval;
     int timeAfterNine = time - 540;
