@@ -109,7 +109,7 @@ public:
         }
     }
 
-    void AvgTimeofRide() {
+    map<string, minHeap> AvgTimeofRide() {
         for(int i = 0; i < rideDatabase.size(); i++) {
             minHeap theheap;
             for (auto intervaltime = TimeCount[i].begin(); intervaltime != TimeCount[i].end(); intervaltime++) {
@@ -117,6 +117,7 @@ public:
             }
             AvgMap[rideDatabase[i].rideName] = theheap;
         }
+        return AvgMap;
     }
 
     // Returns the average of a ride's wait times
