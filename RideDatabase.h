@@ -57,6 +57,8 @@ public:
     vector<DatabaseEntry> rideDatabase;
     map<string, minHeap> AvgMap;
     unordered_set<string> rideNames;
+
+    // Constructor
     RideDatabase() {
         TimeCount.resize(6);
     }
@@ -117,12 +119,19 @@ public:
         }
     }
 
-    int getPopularityIndex(string& rideName) {
-        // Traverse each Entry in database
-        // Add up all of the waitTimes and divide by the total number of
-        return 0;
+    // Returns the average of a ride's wait times
+    int getPopularityIndex(string rideName) {
+        int sum = 0;
+        int index = find(rideName);
+
+        for (RideData rd : rideDatabase[index].rideData) {
+            sum += rd.waitTime;
+        }
+
+        return sum / rideDatabase[index].rideData.size();
     }
 
+    // Fills rideNames set with the name of each ride in RideDatabase
     void fillRideNames() {
         for (DatabaseEntry entry : rideDatabase) {
             rideNames.emplace(entry.rideName);
