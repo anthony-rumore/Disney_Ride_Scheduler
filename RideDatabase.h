@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <map>
+#include <unordered_map>
 #include <unordered_set>
 #pragma once
 #include "theHeap.h"
@@ -45,7 +45,7 @@ class RideDatabase {
     int databaseSize = 8;
     double loadFactor = 0.75;
 
-    vector<map<int, pair<int, int>>> TimeCount; // vector of RideName, map with key is the interval, value is the total waiting time and count
+    vector<unordered_map<int, pair<int, int>>> TimeCount; // vector of RideName, map with key is the interval, value is the total waiting time and count
 
     // Hash function
     //int hash() {}
@@ -55,7 +55,7 @@ class RideDatabase {
 
 public:
     vector<DatabaseEntry> rideDatabase;
-    map<string, minHeap> AvgMap;
+    unordered_map<string, minHeap> AvgMap;
     unordered_set<string> rideNames;
 
     // Constructor
@@ -109,7 +109,7 @@ public:
         }
     }
 
-    map<string, minHeap> AvgTimeofRide() {
+    void AvgTimeofRide() {
         for(int i = 0; i < rideDatabase.size(); i++) {
             minHeap theheap;
             for (auto intervaltime = TimeCount[i].begin(); intervaltime != TimeCount[i].end(); intervaltime++) {
@@ -117,7 +117,6 @@ public:
             }
             AvgMap[rideDatabase[i].rideName] = theheap;
         }
-        return AvgMap;
     }
 
     // Returns the average of a ride's wait times
