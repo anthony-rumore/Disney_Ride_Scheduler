@@ -85,6 +85,13 @@ int main() {
    db.getTotalTime();
    db.AvgTimeofRide();
 
+    Scheduler scheduler = Scheduler(&db);
+    const vector<string> &output = scheduler.scheduleDay();
+
+    for (const string &line : output) {
+        cout << line << endl;
+    }
+
    return 0;
 
 }

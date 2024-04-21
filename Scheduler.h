@@ -24,7 +24,7 @@ private:
     RideDatabase* db;
     unordered_set<string> selectedRides;
     unordered_map<string, int> ridePopularityIndexes;
-    unordered_map<string, minHeap> lowestRideWaits;
+    unordered_map<string, minHeap>* lowestRideWaits;
 
     // 15-minute buffer between end of wait and next ride
     const int SCHEDULE_BUFFER = 15;

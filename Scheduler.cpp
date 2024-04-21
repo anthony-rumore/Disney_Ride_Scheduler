@@ -47,8 +47,14 @@ void Scheduler::populateData() {
 
     // Get all the data for:
     // - SelectedRides
+    selectedRides = db->rideNames;
+
     // - ridePopularityIndexes
+    for (const string& ride : selectedRides)
+        ridePopularityIndexes[ride] = db->getPopularityIndex(ride);
+
     // - lowestRideWaits
+    lowestRideWaits = &db->AvgMap;
 }
 
 vector<string> Scheduler::scheduleDay() {
@@ -78,7 +84,7 @@ vector<string> Scheduler::scheduleDay() {
     // Schedule the rides
     while (!scheduleQueue.empty()) {
         string ride = scheduleQueue.front();
-        minHeap &lowestWaits = lowestRideWaits[ride];
+        minHeap &lowestWaits = lowestRideWaits->operator[](ride);
 
         bool scheduling = true;
         while (scheduling) {
