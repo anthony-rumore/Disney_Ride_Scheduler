@@ -77,7 +77,7 @@ vector<string> Scheduler::scheduleDay() {
             }
         }
 
-        scheduleQueue.emplace(selectedRide);
+        scheduleQueue.push(selectedRide);
         ridesToQueue.erase(selectedRide);
     }
 
