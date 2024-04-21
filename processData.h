@@ -14,7 +14,7 @@ bool validateTime(string inputTime) {
     getline(stream, data, ':');
     timeToValidate = stoi(data);
 
-    if (timeToValidate > 8 && timeToValidate < 22) {
+    if (timeToValidate > 8 && timeToValidate < 21) {
         return true;
     }
     return false;
