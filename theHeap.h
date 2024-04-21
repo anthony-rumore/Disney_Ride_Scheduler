@@ -51,7 +51,6 @@ public:
             throw:: out_of_range("empty");
         }
 
-        pair<int, float> min = theheap[0];
         theheap[0] = theheap.back();
         theheap.pop_back();
         heapifyDown(0);
