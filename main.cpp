@@ -25,8 +25,8 @@ int main() {
     cout << "Here's how it works: Below, you'll find a list of Magic Kingdom attractions, each assigned a unique number. " << endl
          << "To get started, simply type in the numbers corresponding to up to 6 attractions you're most excited about. " << endl << endl
 
-         << "Our program will then generate a personalized schedule tailored to optimize your visit, " << endl
-         << "helping you avoid long queues and will maximize your day." << endl << endl;
+         << "Our program will then generate a personalized schedule—tailored to optimize your visit, " << endl
+         << "helping you avoid long queues to maximize your day." << endl << endl;
 
 
     for (int i = 0; i < rideNames.size(); i++) {
