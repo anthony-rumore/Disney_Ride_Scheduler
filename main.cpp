@@ -78,17 +78,31 @@ int main() {
     }
 
    // Loop through rideIds to fill RideDatabase with user's choices
-   for (int i = 0; i < 6; i++) {
-       processData(db, rideIDs[i]);
+   for (int rideID : rideIDs) {
+       processData(db, rideID);
    }
 
+   // Gets and processes the data in the ride database
    db.fillRideNames();
    db.getTotalTime();
    db.AvgTimeofRide();
 
+   // Creates the scheduler class with the rideDatabase as input
     Scheduler scheduler = Scheduler(&db);
+    // Schedules the day and returns the schedule as a bunch of strings
     const vector<string> &output = scheduler.scheduleDay();
 
+    cout << "\n"
+            "Here's your ideal day planned for\n"
+            " __  __             _        _  ___           _                 \n"
+            "|  \\/  | __ _  __ _(_) ___  | |/ (_)_ __   __| | ___  _ __ ___  \n"
+            "| |\\/| |/ _` |/ _` | |/ __| | ' /| | '_ \\ / _` |/ _ \\| '_ ` _ \\ \n"
+            "| |  | | (_| | (_| | | (__  | . \\| | | | | (_| | (_) | | | | | |\n"
+            "|_|  |_|\\__,_|\\__, |_|\\___| |_|\\_\\_|_| |_|\\__,_|\\___/|_| |_| |_|\n"
+            "              |___/                                             \n"
+            "\n";
+
+    // Prints out the schedule
     for (const string &line : output) {
         cout << line << endl;
     }
