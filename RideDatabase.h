@@ -89,7 +89,7 @@ public:
     }
 
     void getTotalTime() {
-        for(int i = 0; i < rideDatabase.size(); i++) { // loop through each RideName
+        for(int i = 0; i < rideDatabase.size(); i++) { // loop through 6 RideNames
             for(auto RideData: rideDatabase[i].rideData) {
                 // if the interval of time does not exist
                 if(TimeCount[i].find((RideData.timeOfDay/5) * 5) == TimeCount[i].end()) {
@@ -105,7 +105,7 @@ public:
     }
 
     void AvgTimeofRide() {
-        for(int i = 0; i < rideDatabase.size(); i++) {
+        for(int i = 0; i < rideDatabase.size(); i++) { // loop through 6 rides
             minHeap theheap;
             // loop through each ride, calculate the average waiting time
             for (auto intervaltime = TimeCount[i].begin(); intervaltime != TimeCount[i].end(); intervaltime++) {
