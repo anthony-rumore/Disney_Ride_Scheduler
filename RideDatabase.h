@@ -42,16 +42,8 @@ struct DatabaseEntry {
 // Hash table will be implemented as a vector of DatabaseEntry structs
 class RideDatabase {
 
-    int databaseSize = 8;
-    double loadFactor = 0.75;
-
+    int databaseSize = 6;
     vector<unordered_map<int, pair<int, int>>> TimeCount; // vector of RideName, map with key is the interval, value is the total waiting time and count
-
-    // Hash function
-    //int hash() {}
-
-    // Rehash function to increase database size
-    void rehash() {}
 
 public:
     vector<DatabaseEntry> rideDatabase;
@@ -132,7 +124,6 @@ public:
         for (RideData rd : rideDatabase[index].rideData) {
             sum += rd.waitTime;
         }
-
         return sum / rideDatabase[index].rideData.size();
     }
 
@@ -142,5 +133,4 @@ public:
             rideNames.insert(entry.rideName);
         }
     }
-
 };
