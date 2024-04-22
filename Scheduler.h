@@ -1,7 +1,3 @@
-//
-// Created by AJ Rumore on 4/20/24.
-//
-
 #ifndef DISNEY_RIDE_SCHEDULER__SCHEDULER_H
 #define DISNEY_RIDE_SCHEDULER__SCHEDULER_H
 
@@ -39,10 +35,8 @@ public:
 
     Scheduler(RideDatabase* db) {
         this->db = db;
-
         populateData();
     }
 };
-
 
 #endif //DISNEY_RIDE_SCHEDULER__SCHEDULER_H

@@ -70,6 +70,7 @@ public:
                 return true;
             }
         }
+
         return false;
     }
 
@@ -96,11 +97,13 @@ public:
     }
 
     void getTotalTime() {
-        for(int i = 0; i < rideDatabase.size(); i++) { // each RideName
+        for(int i = 0; i < rideDatabase.size(); i++) { // loop through each RideName
             for(auto RideData: rideDatabase[i].rideData) {
+                // if the interval of time does not exist
                 if(TimeCount[i].find((RideData.timeOfDay/5) * 5) == TimeCount[i].end()) {
                     TimeCount[i][(RideData.timeOfDay/5)*5] = make_pair(RideData.waitTime, 1);
                 }
+                // if it exists, add up to total of waiting time and increment count (for avg later)
                 else {
                     TimeCount[i][(RideData.timeOfDay/5)*5].first += RideData.waitTime;
                     TimeCount[i][(RideData.timeOfDay/5)*5].second++;
@@ -112,9 +115,11 @@ public:
     void AvgTimeofRide() {
         for(int i = 0; i < rideDatabase.size(); i++) {
             minHeap theheap;
+            // loop through each ride, calculate the average of the waiting time
             for (auto intervaltime = TimeCount[i].begin(); intervaltime != TimeCount[i].end(); intervaltime++) {
                 theheap.InsertHeap(make_pair(intervaltime->first, (intervaltime->second.first / intervaltime->second.second)));
             }
+            // add the average of waiting time of each interval and store in a min heap
             AvgMap[rideDatabase[i].rideName] = theheap;
         }
     }

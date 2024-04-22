@@ -17,6 +17,7 @@ bool validateTime(string inputTime) {
     if (timeToValidate > 8 && timeToValidate < 21) {
         return true;
     }
+
     return false;
 }
 
@@ -32,7 +33,6 @@ int convertTime(string inputTime) {
     minutes += stoi(data);
 
     return minutes;
-
 }
 
 // Reads one data file and enters each row of data into RideDatabase
@@ -54,11 +54,13 @@ void readFile(RideDatabase& rides, string fileName) {
         entry.rideName = data;
         getline(file, data, ' ');
         getline(file, data, ',');
+
         // If the timeOfDay is not between 9:00AM-9:00PM, do not add to database
         if (!validateTime(data)) {
             getline(file, data, '\n');
             continue;
         }
+
         // If the time is valid, convert it to an int in minutes
         convertedTime = convertTime(data);
         rideData.timeOfDay = convertedTime;
@@ -70,7 +72,7 @@ void readFile(RideDatabase& rides, string fileName) {
 }
 
 // Based on user's rideChoice, inserts the data from that file into RideDatabase
-void processData(RideDatabase& rides, int rideChoice) {
+void processData (RideDatabase& rides, int rideChoice) {
     switch(rideChoice) {
         case 1:  // AO
             readFile(rides, "../Data/Feb-AO.csv");

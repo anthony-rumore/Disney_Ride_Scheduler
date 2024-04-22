@@ -15,24 +15,25 @@ class minHeap {
         }
     }
 
-    void heapifyDown(int index)
-    {
+    void heapifyDown(int index) {
         int smallest = index; // Initialize largest as root
         int l = 2 * index + 1; // left = 2*i + 1
         int r = 2 * index + 2; // right = 2*i + 2
+
         // If left child is smaller than root
         if (l < theheap.size() && theheap[l].second < theheap[smallest].second)
             smallest = l;
+
         // If right child is smaller than smaller so far
         if (r < theheap.size() && theheap[r].second < theheap[smallest].second)
             smallest = r;
+
         // If largest is not root
         if (smallest != index) {
             swap(theheap[index], theheap[smallest]);
             heapifyDown(smallest);
         }
     }
-
 
 public:
     vector<pair<int, float>> theheap;
