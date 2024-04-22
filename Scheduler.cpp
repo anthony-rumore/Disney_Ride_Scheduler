@@ -4,8 +4,9 @@ pair<int, int> Scheduler::convertTimeToPair(int time) {
     if (time < 540 || time > 1260) {// Invalid time
         cout << "[Scheduler Error] ! !  INVALID TIME DETECTED  ! !" << endl;
         return {-1, -1};
-        }
+    }
 
+    // Converts time to hours after 9am and 5-minute intervals in the hour
     int hour, minuteInterval;
     int timeAfterNine = time - 540;
 
@@ -22,9 +23,11 @@ string Scheduler::convertTimeToString(int time) {
     int hour, minute;
     string dayHalf = "am";
 
+    // Converts integer time to hours and minutes
     hour = time / 60;
     minute = time % 60;
 
+    // Handles pm conversion
     if (hour > 11) {
         hour = hour % 12;
         if (hour == 0)
@@ -32,17 +35,18 @@ string Scheduler::convertTimeToString(int time) {
         dayHalf = "pm";
     }
 
+    // Makes sure single digit minutes lead with 0
     string minuteOffset = "";
     if (minute < 10)
         minuteOffset = "0";
 
+    // Formats output string
     stringstream output;
     output << hour << ":" << minuteOffset << minute << dayHalf;
     return output.str();
 }
 
 void Scheduler::populateData() {
-
     // Get all the data for:
     // - SelectedRides
     selectedRides = db->rideNames;
@@ -56,8 +60,10 @@ void Scheduler::populateData() {
 }
 
 vector<string> Scheduler::scheduleDay() {
-    queue<string> scheduleQueue;
-    vector<string> outputText;
+    queue<string> scheduleQueue; // Rides in-order of popularity to schedule
+    vector<string> outputText; // Text to return and print later
+    map<int, string> rideSchedule; // Sorts text to go into outputText
+
     unordered_set<string> ridesToQueue = selectedRides; // copy rides
 
     // Queue all the rides in order of popularity
@@ -74,6 +80,7 @@ vector<string> Scheduler::scheduleDay() {
             }
         }
 
+        // Adds ride to queue and removes it from rides to add to the queue
         scheduleQueue.push(selectedRide);
         ridesToQueue.erase(selectedRide);
     }
@@ -87,8 +94,14 @@ vector<string> Scheduler::scheduleDay() {
         while (scheduling) {
             // Get time variables
             int startTime = lowestWaits.getMin().first;
+
             int lowestWait = (int) round(lowestWaits.getMin().second);
+            if (lowestWait % 5 != 0) // Round to nearest 5-minute interval
+                lowestWait += 5 - (lowestWait % 5);
+
             int endTime = startTime + lowestWait + SCHEDULE_BUFFER;
+            if (endTime > 1260) // Does not account past 9pm
+                endTime = 1260;
 
             bool overlap = false;
 
@@ -97,6 +110,7 @@ vector<string> Scheduler::scheduleDay() {
                 pair<int, int> arrayTime = convertTimeToPair(i);
                 bool timeAvailable = !day[arrayTime.first][arrayTime.second];
 
+                // Checks for an overlap
                 if (!timeAvailable) {
                     overlap = true;
                     break;
@@ -126,13 +140,17 @@ vector<string> Scheduler::scheduleDay() {
             }
 
             // Add ride to schedule text for the output
-            outputText.push_back(convertTimeToString(startTime) + " - " + ride); // TO-DO Wait time ETA? (~30 min wait)
+            rideSchedule[startTime] = (convertTimeToString(startTime) + " - " + ride + " - ~" + to_string(lowestWait) + " minute wait");
             scheduling = false;
         }
 
         // Move on to the next ride to schedule
         scheduleQueue.pop();
     }
+
+    // Return output; one line per string
+    for (auto &ride : rideSchedule)
+        outputText.push_back(ride.second);
 
     return outputText;
 }
