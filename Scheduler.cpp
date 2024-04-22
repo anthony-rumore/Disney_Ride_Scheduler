@@ -1,7 +1,3 @@
-//
-// Created by AJ Rumore on 4/20/24.
-//
-
 #include "Scheduler.h"
 
 pair<int, int> Scheduler::convertTimeToPair(int time) {
@@ -62,7 +58,6 @@ void Scheduler::populateData() {
 vector<string> Scheduler::scheduleDay() {
     queue<string> scheduleQueue;
     vector<string> outputText;
-
     unordered_set<string> ridesToQueue = selectedRides; // copy rides
 
     // Queue all the rides in order of popularity
