@@ -115,16 +115,16 @@ public:
     void AvgTimeofRide() {
         for(int i = 0; i < rideDatabase.size(); i++) {
             minHeap theheap;
-            // loop through each ride, calculate the average of the waiting time
+            // loop through each ride, calculate the average waiting time
             for (auto intervaltime = TimeCount[i].begin(); intervaltime != TimeCount[i].end(); intervaltime++) {
                 theheap.InsertHeap(make_pair(intervaltime->first, (intervaltime->second.first / intervaltime->second.second)));
             }
-            // add the average of waiting time of each interval and store in a min heap
+            // add the average waiting time of each interval and store in a min heap
             AvgMap[rideDatabase[i].rideName] = theheap;
         }
     }
 
-    // Returns the average of a ride's wait times
+    // Returns the average wait times
     int getPopularityIndex(string rideName) {
         int sum = 0;
         int index = find(rideName);

@@ -9,7 +9,6 @@
 #include <queue>
 #include <cmath>
 #include <map>
-
 #include "RideDatabase.h"
 #include "theHeap.h"
 
