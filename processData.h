@@ -51,7 +51,13 @@ void readFile(RideDatabase& rides, string fileName) {
     file.ignore(500,'\n' );
 
     while (getline(file, data, ',')) {
-        entry.rideName = data;
+        // Changes string for "It's a Small World"
+        if (data == "\"\"\"it's a small world\"\"\"") {
+            entry.rideName = "It's a Small World";
+        }
+        else {
+            entry.rideName = data;
+        }
         getline(file, data, ' ');
         getline(file, data, ',');
 

@@ -139,7 +139,7 @@ public:
     // Fills rideNames set with the name of each ride in RideDatabase
     void fillRideNames() {
         for (DatabaseEntry entry : rideDatabase) {
-            rideNames.emplace(entry.rideName);
+            rideNames.insert(entry.rideName);
         }
     }
 

@@ -1,13 +1,18 @@
+//
+// Created by AJ Rumore on 4/20/24.
+//
+
 #include "Scheduler.h"
 
 pair<int, int> Scheduler::convertTimeToPair(int time) {
     if (time < 540 || time > 1260) {// Invalid time
         cout << "[Scheduler Error] ! !  INVALID TIME DETECTED  ! !" << endl;
         return {-1, -1};
-    }
+        }
 
     int hour, minuteInterval;
     int timeAfterNine = time - 540;
+
     hour = timeAfterNine / 60;
     minuteInterval = (timeAfterNine % 60) / 5;
 
@@ -37,7 +42,6 @@ string Scheduler::convertTimeToString(int time) {
 
     stringstream output;
     output << hour << ":" << minuteOffset << minute << dayHalf;
-
     return output.str();
 }
 
@@ -58,6 +62,7 @@ void Scheduler::populateData() {
 vector<string> Scheduler::scheduleDay() {
     queue<string> scheduleQueue;
     vector<string> outputText;
+
     unordered_set<string> ridesToQueue = selectedRides; // copy rides
 
     // Queue all the rides in order of popularity
@@ -82,8 +87,8 @@ vector<string> Scheduler::scheduleDay() {
     while (!scheduleQueue.empty()) {
         string ride = scheduleQueue.front();
         minHeap &lowestWaits = lowestRideWaits->operator[](ride);
-        bool scheduling = true;
 
+        bool scheduling = true;
         while (scheduling) {
             // Get time variables
             int startTime = lowestWaits.getMin().first;
