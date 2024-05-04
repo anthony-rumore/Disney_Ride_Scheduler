@@ -1,6 +1,4 @@
 # Making Your Day Magical™
-*Project 3: COP3530 Data Structures and Algorithms*
-
 This program takes in tens of thousands of queue wait time data points from popular Magic Kingdom attractions at Walt Disney World and uses that data to build *your* perfect Disney day!
 
 Simply select your top 6 attractions that you would like to do in a single day and our program will do the rest. We'll tell you what time you should ride each ride to minimize waiting in line and thus maximize your day.
@@ -76,3 +74,6 @@ When adding an attraction to the schedule, the scheduler reserves the ride's wai
 #### Time Conflict Resolution
 
 If the scheduler attempts to schedule a ride with its lowest wait time for a time that is already occupied by another attraction on the itinerary, the ride will continue attempting its next-best minimum wait time until it can fit on the schedule. Once all the user's selected rides are scheduled, a full itinerary of arrival times and attraction names will be printed for the user in chronological order. This is the schedule the user will follow to minimize their time waiting in line!
+
+## Youtube link: 
+https://youtu.be/1NJ1El2cero 
